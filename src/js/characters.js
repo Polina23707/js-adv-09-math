@@ -1,7 +1,8 @@
 export class Characters {
   constructor(name) {
     this.name = name;
-    this.power = 100;
+    // this.demage= 100;
+    this.health = 100;
   }
   
   get stoned() {
@@ -10,8 +11,11 @@ export class Characters {
 
   set stoned(location) {
     let stonedLevel = new Map([[1, 1] , [2, 0.9] ,[3, 0.8] , [4, 0.7] , [5, 0.6]]);
-    this._stoned = stonedLevel.get(location);
-    this.power = this.power - this._stoned;
+    console.log(stonedLevel.get(location));
+    this._stoned = this.health * stonedLevel.get(location);
+    console.log(this._stoned);
+    this.health = this.health - this._stoned;
+    console.log(this.health);
   }
 
   get attack() {
@@ -19,10 +23,7 @@ export class Characters {
   }
 
   set attack(location) {
-    // let dopeLevel = Math.log2(location) * 5;
-    let dopeLevel = this._stoned;
-    this._attack = this._stoned + dopeLevel;
-    this.power = this.power - this._attack;
-
+    let dopeLevel = Math.log2(location) * 5;
+    this._attack = dopeLevel ;
   }
 }
